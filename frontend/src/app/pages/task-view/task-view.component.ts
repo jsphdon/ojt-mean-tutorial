@@ -35,8 +35,22 @@ export class TaskViewComponent implements OnInit {
     this.taskService.setCompleted(this.listId, task).subscribe(() => task.completed = !task.completed);
   }
 
-  // onTaskDelete(task: Task) {
-  //   this.taskService.deleteTask(this.listId, task._id).subscribe((task: Task) => this.tasks.filter(t => t._id != task._id));
-  // }
+  onTaskDelete(task: Task) {
+    this.taskService.deleteTask(this.listId, task._id).subscribe(() => this.tasks = this.tasks.filter(t => t._id != task._id));
+  }
+
+  onListDelete(list: List) {
+    this.taskService.deleteList(list._id).subscribe(() => this.lists = this.lists.filter(l => l._id != list._id));
+  }
+
+
+  addTaskClick() {
+    if (!this.listId) {
+      alert("Please select a list to add tasks!");
+      return;
+    }
+
+    this.router.navigate(['./new-task'], { relativeTo: this.route })
+  }
 
 }
