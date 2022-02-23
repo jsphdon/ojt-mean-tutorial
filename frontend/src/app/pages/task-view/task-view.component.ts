@@ -41,7 +41,7 @@ export class TaskViewComponent implements OnInit {
 
   onListDelete(list: List) {
     this.taskService.deleteList(list._id).subscribe(() => this.lists = this.lists.filter(l => l._id != list._id));
-    this.router.navigate(['./', { relativeTo: this.route }])
+    this.router.navigate(['/', { relativeTo: this.route }])
   }
 
 
